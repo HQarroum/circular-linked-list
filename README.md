@@ -45,16 +45,51 @@ It is possible to iterate over each nodes associated with a given list as follow
 ```C
 int iterator(size_t index, node_t* node)
 {
-  printf("Node (%d) element : %s\n", index, (char*) node->element);
+  printf("Node (%zu) element : %s\n", index, (const char*) node->element);
   return (0);
 }
 
+// Iterates over each node in the list.
 list_iterate_over_nodes(list, &iterator);
 ```
 
+## Finding an element
+
+### Basic node lookup
+
+It is possible to search through the list for a particular node. You can use the `list_find_node` function to do so :
+
+```C
+node_t* node = list_add_element_in_head(list, "foo");
+if (list_find_node(list, node)) {
+  puts("Node found !");
+}
+```
+
+### Customized lookup
+
+To customize the way to find an element in the list you can provide a predicate function to the `list_find_element_by_predicate` function :
+
+```C
+/**
+ * Returns a positive value when the element
+ * contained by the given node is 'foo'.
+ */
+int predicate(size_t index, node_t* node)
+{
+  return (!strcmp(node->element, "foo"));
+}
+
+// Triggering a lookup by predicate.
+if (list_find_element_by_predicate(list, &predicate)) {
+  puts("I found foo !");
+}
+```
 ## Destroying an instance of a list
 
-Similarly to creating a new instance of a list, to delete an instance of a list, you must call `list_destroy` :
+Similarly to creating a new instance of a list, to delete an instance of a list, you must call `list_destroy`. This will cause every node left in the list to be deleted, and the list itself to be destroyed. You will not be able to use the pointer to the list after a call to `list_destroy`.
+
+Example :
 
 ```C
 list_destroy(list);
