@@ -61,6 +61,7 @@ It is possible to search through the list for a particular node. You can use the
 
 ```C
 node_t* node = list_add_element_in_head(list, "foo");
+
 if (list_find_node(list, node)) {
   puts("Node found !");
 }
@@ -85,6 +86,27 @@ if (list_find_element_by_predicate(list, &predicate)) {
   puts("I found foo !");
 }
 ```
+
+## Removing a node
+
+To remove a given node from the list, you can pass a pointer to the node you'd like to be removed to the `list_remove_node` function :
+
+```C
+list_t* list = list_create();
+node_t* node = list_add_element_in_head(list, "foo");
+
+// After this call, the list will be empty.
+list_remove_node(list, node);
+```
+
+## Retrieving the size of a list instance
+
+Retrieving the size of the list is a constant time operation O(1), since the size is maintained across each insertions and removals. You can retrieve it as follow :
+
+```C
+size_t size = list_get_size(list);
+```
+
 ## Destroying an instance of a list
 
 Similarly to creating a new instance of a list, to delete an instance of a list, you must call `list_destroy`. This will cause every node left in the list to be deleted, and the list itself to be destroyed. You will not be able to use the pointer to the list after a call to `list_destroy`.
