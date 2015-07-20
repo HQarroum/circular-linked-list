@@ -47,13 +47,16 @@ It is possible to iterate over each nodes associated with a given list as follow
 ```C
 int iterator(size_t index, node_t* node)
 {
-  printf("Node (%zu) element : %s\n", index, (const char*) node->element);
+  printf("Node (%zu) element : %s\n",
+    index,
+    (const char*) node->element);
   return (0);
 }
 
 // Iterates over each node in the list.
 list_iterate_over_nodes(list, &iterator);
 ```
+> Note : If a negative value is returned from the itertor, the iteration will be stopped.
 
 The complexity of an iteration over each node in the list is linear `O(n)`.
 
