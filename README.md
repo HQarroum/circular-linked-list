@@ -38,6 +38,8 @@ list_add_element_in_tail(list, "qux");
 
 Both functions create an instance of a `node_t` which wraps the given element to insert in the list. As such, the two insertion functions return a pointer to the created node.
 
+The complexity of a node insertion is constant `O(1)`.
+
 ## Iterating over the nodes
 
 It is possible to iterate over each nodes associated with a given list as follow :
@@ -52,6 +54,8 @@ int iterator(size_t index, node_t* node)
 // Iterates over each node in the list.
 list_iterate_over_nodes(list, &iterator);
 ```
+
+The complexity of an iteration over each node in the list is linear `O(n)`.
 
 ## Finding an element
 
@@ -87,6 +91,8 @@ if (list_find_element_by_predicate(list, &predicate)) {
 }
 ```
 
+The complexity of both basic and customized lookups is linear `O(n)`.
+
 ## Removing a node
 
 To remove a given node from the list, you can pass a pointer to the node you'd like to be removed to the `list_remove_node` function :
@@ -99,9 +105,11 @@ node_t* node = list_add_element_in_head(list, "foo");
 list_remove_node(list, node);
 ```
 
+The complexity of a node removal is linear `O(n)`.
+
 ## Retrieving the size of a list instance
 
-Retrieving the size of the list is a constant time operation O(1), since the size is maintained across each insertions and removals. You can retrieve it as follow :
+Retrieving the size of the list is a constant time operation `O(1)`, since the size is maintained across each insertions and removals. You can retrieve it as follow :
 
 ```C
 size_t size = list_get_size(list);
