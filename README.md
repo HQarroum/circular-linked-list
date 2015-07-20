@@ -56,7 +56,7 @@ int iterator(size_t index, node_t* node)
 // Iterates over each node in the list.
 list_iterate_over_nodes(list, &iterator);
 ```
-> Note : If a negative value is returned from the itertor, the iteration will be stopped.
+> Note : If a negative value is returned from the iterator, the iteration will be stopped.
 
 The complexity of an iteration over each node in the list is linear `O(n)`.
 
