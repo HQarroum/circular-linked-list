@@ -45,7 +45,7 @@ The complexity of a node insertion is constant `O(1)`.
 It is possible to iterate over each nodes associated with a given list as follow :
 
 ```C
-int iterator(size_t index, node_t* node)
+int iterator(size_t index, node_t* node, void* data)
 {
   printf("Node (%zu) element : %s\n",
     index,
@@ -54,7 +54,7 @@ int iterator(size_t index, node_t* node)
 }
 
 // Iterates over each node in the list.
-list_iterate_over_nodes(list, &iterator);
+list_iterate_over_nodes(list, iterator);
 ```
 > Note : If a negative value is returned from the iterator, the iteration will be stopped.
 
