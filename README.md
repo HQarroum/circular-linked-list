@@ -74,7 +74,7 @@ if (list_find_node(list, node)) {
 }
 ```
 
-### Customized lookup
+### Conditional lookup
 
 To customize the way to find an element in the list you can provide a predicate function to the `list_find_element_by_predicate` function :
 
@@ -98,6 +98,8 @@ The complexity of both basic and customized lookups is linear `O(n)`.
 
 ## Removing a node
 
+### Basic removal
+
 To remove a given node from the list, you can pass a pointer to the node you'd like to be removed to the `list_remove_node` function :
 
 ```C
@@ -108,6 +110,22 @@ node_t* node = list_add_element_in_head(list, "foo");
 list_remove_node(list, node);
 ```
 
+### Conditional removal
+
+It is possible to remove a node using a more functional way, by using a predicate passed to `list_remove_node_if`, here is an example of how you can use it :
+
+```C
+int predicate(size_t index, node_t* node)
+{
+  return (!strcmp(node->element, "bar")
+          || !strcmp(node->element, "foo"));
+}
+
+// This will remove from the list each node holding
+// the constant strings 'foo' or 'bar'.
+list_remove_node_if(list, predicate);
+```
+
 The complexity of a node removal is linear `O(n)`.
 
 ## Retrieving the size of a list instance
@@ -116,6 +134,12 @@ Retrieving the size of the list is a constant time operation `O(1)`, since the s
 
 ```C
 size_t size = list_get_size(list);
+```
+
+Similarly, it is also possible to call `list_is_empty` if you'd like to know whether the given list is empty :
+
+```C
+int empty = list_is_empty(list)
 ```
 
 ## Destroying an instance of a list
