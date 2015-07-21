@@ -28,12 +28,12 @@ There are two main ways to insert an element into an instance of a list :
 
 ```C
 // Pushing elements in head.
-list_add_element_in_head(list, "foo");
-list_add_element_in_head(list, "bar");
+list_push_front(list, "foo");
+list_push_front(list, "bar");
 
 // Pushing elements in tail.
-list_add_element_in_tail(list, "baz");
-list_add_element_in_tail(list, "qux");
+list_push_back(list, "baz");
+list_push_back(list, "qux");
 ```
 
 Both functions create an instance of a `node_t` which wraps the given element to insert in the list. As such, the two insertion functions return a pointer to the created node.
@@ -67,7 +67,7 @@ The complexity of an iteration over each node in the list is linear `O(n)`.
 It is possible to search through the list for a particular node. You can use the `list_find_node` function to do so :
 
 ```C
-node_t* node = list_add_element_in_head(list, "foo");
+node_t* node = list_push_front(list, "foo");
 
 if (list_find_node(list, node)) {
   puts("Node found !");
@@ -104,7 +104,7 @@ To remove a given node from the list, you can pass a pointer to the node you'd l
 
 ```C
 list_t* list = list_create();
-node_t* node = list_add_element_in_head(list, "foo");
+node_t* node = list_push_front(list, "foo");
 
 // After this call, the list will be empty.
 list_remove_node(list, node);
@@ -115,7 +115,7 @@ list_remove_node(list, node);
 It is possible to remove a node using a more functional way, by using a predicate passed to `list_remove_node_if`, here is an example of how you can use it :
 
 ```C
-int predicate(size_t index, node_t* node)
+int predicate(size_t index, node_t* node, void* data)
 {
   return (!strcmp(node->element, "bar")
           || !strcmp(node->element, "foo"));
@@ -123,7 +123,20 @@ int predicate(size_t index, node_t* node)
 
 // This will remove from the list each node holding
 // the constant strings 'foo' or 'bar'.
-list_remove_node_if(list, predicate);
+list_remove_node_if(list, predicate, NULL);
+```
+
+It is also possible to pass a third parameter to `list_remove_node_id`, for it to be passed to your predicate function. This is espacially handy when removing values you do not known compile-time from the list :
+
+```C
+int predicate(size_t index, node_t* node, void* data)
+{
+  return (!strcmp(node->element, data));
+}
+
+// This will remove from the list each node holding
+// the constant string 'foo'.
+list_remove_node_if(list, predicate, "foo");
 ```
 
 The complexity of a node removal is linear `O(n)`.
