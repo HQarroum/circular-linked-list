@@ -76,20 +76,20 @@ if (list_find_node(list, node)) {
 
 ### Conditional lookup
 
-To customize the way to find an element in the list you can provide a predicate function to the `list_find_element_by_predicate` function :
+To customize the way to find an element in the list you can provide a predicate function to the `list_find_node_if` function :
 
 ```C
 /**
  * Returns a positive value when the element
- * contained by the given node is 'foo'.
+ * contained by the given node is `data`.
  */
-int predicate(size_t index, node_t* node)
+int predicate(size_t index, node_t* node, void* data)
 {
-  return (!strcmp(node->element, "foo"));
+  return (!strcmp(node->element, data));
 }
 
 // Triggering a lookup by predicate.
-if (list_find_element_by_predicate(list, &predicate)) {
+if (list_find_node_if(list, predicate, "foo")) {
   puts("I found foo !");
 }
 ```
