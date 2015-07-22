@@ -1,5 +1,9 @@
 #include "linked-list.h"
 
+/**
+ * @brief Creates a new instance of a `list_t`.
+ * @return a pointer to the created list.
+ */
 list_t*	list_create()
 {
   list_t*	list;
@@ -11,6 +15,12 @@ list_t*	list_create()
   return (list);
 }
 
+/**
+ * @brief Same as `list_create` except no dynamic
+ * allocation on the heap will be perform to create
+ * the list.
+ * @return a list_t value
+ */
 list_t list_create_static()
 {
   return ((list_t) {
@@ -20,6 +30,27 @@ list_t list_create_static()
   });
 }
 
+/**
+ * @brief Destroys every element of the given `list` and
+ * frees the memory allocated by the `list`. The given pointer
+ * will not be usable after a call to this function.
+ */
+void	list_destroy(list_t* list)
+{
+  node_t* node = list->head;
+  
+  for (size_t i = 0; i < list->size; ++i) {
+    node_t* current = node;
+    node = node->next;
+    free(current);
+  }
+  free(list);
+}
+
+/**
+ * @brief Allows to iterate over each node held by the list by pushing
+ * each of them to the given `iterator`.
+ */
 void	list_iterate_over_nodes(list_t* list, list_predicate_t iterator)
 {
   node_t* node = list->head;
@@ -32,6 +63,27 @@ void	list_iterate_over_nodes(list_t* list, list_predicate_t iterator)
   }
 }
 
+/**
+ * @brief Searches the list for the given `node`.
+ * @return the found node if any, NULL otherwise.
+ */
+node_t*	list_find_node(list_t* list, node_t* element)
+{
+  node_t* node = list->head;
+  
+  for (size_t i = 0; i < list->size; ++i) {
+    if (node == element) {
+      return (node);
+    }
+    node = node->next;
+  }
+  return (NULL);
+}
+
+/**
+ * @brief Finds an element using the return value of the given `predicate`.
+ * @return the node matching the given predicate.
+ */
 node_t*	list_find_node_if(list_t* list, list_predicate_t iterator, void* data)
 {
   node_t* node = list->head;
@@ -45,28 +97,28 @@ node_t*	list_find_node_if(list_t* list, list_predicate_t iterator, void* data)
   return (NULL);
 }
 
+/**
+ * @return the size of the given `list`. That is, the number of nodes currently
+ * held by the list.
+ */
 size_t	list_get_size(list_t* list)
 {
   return (list->size);
 }
 
+/**
+ * @return a positive value if the given `list` is
+ * empty, zero otherwise.
+ */
 int	list_is_empty(list_t* list)
 {
   return (list_get_size(list) == 0);
 }
 
-void	list_destroy(list_t* list)
-{
-  node_t* node = list->head;
-  
-  for (size_t i = 0; i < list->size; ++i) {
-    node_t* current = node;
-    node = node->next;
-    free(current);
-  }
-  free(list);
-}
-
+/**
+ * @brief Creates a new initialized node instance.
+ * @return a new instance of a `node_t`.
+ */
 node_t* node_new(void* element)
 {
   node_t* node;
@@ -78,6 +130,12 @@ node_t* node_new(void* element)
   return (node);
 }
 
+/**
+ * @brief Adds a new element to the `list`. This will cause a new `node_t`
+ * to be created, holding the given `element` and pushed at the front of the
+ * given `list`.
+ * @return a pointer to the newly created node.
+ */
 node_t*	list_push_front(list_t* list, void* element)
 {
   node_t* node = node_new(element);
@@ -100,6 +158,12 @@ node_t*	list_push_front(list_t* list, void* element)
   return (node);
 }
 
+/**
+ * @brief Adds a new element to the `list`. This will cause a new `node_t`
+ * to be created, holding the given `element` and pushed to the back of the
+ * given `list`.
+ * @return a pointer to the newly created node.
+ */
 node_t*	list_push_back(list_t* list, void* element)
 {
   node_t* node = node_new(element);
@@ -122,6 +186,11 @@ node_t*	list_push_back(list_t* list, void* element)
   return (node);
 }
 
+/**
+ * @brief Removes the node associated with the given node pointer
+ * from the list.
+ * @return the pointer held by the removed node.
+ */
 void* list_pop_node(list_t* list, node_t* node)
 {
   void* element;
@@ -134,16 +203,29 @@ void* list_pop_node(list_t* list, node_t* node)
   return (element);
 }
 
+/**
+ * @brief Removes the node located at the head of the list.
+ * @return the pointer held by the removed node.
+ */
 void* list_pop_back(list_t* list)
 {
   return (list_pop_node(list, list->tail));
 }
 
+/**
+ * @brief Removes the node located at the tail of the list.
+ * @return the pointer held by the removed node.
+ */
 void* list_pop_front(list_t* list)
 {
   return (list_pop_node(list, list->head));
 }
 
+/**
+ * @return a new instance of an iterator. The iterator's current node
+ * will be `node` if the given pointer is non-NULL, or the head of the
+ * given `list` otherwise.
+ */
 list_iterator_t list_make_iterator(list_t* list, node_t* node)
 {
   return ((list_iterator_t) {
@@ -152,16 +234,29 @@ list_iterator_t list_make_iterator(list_t* list, node_t* node)
   });
 }
 
+/**
+ * @return whether it is possible to go forward in the list.
+ */
 int list_iterator_has_next(list_iterator_t* it)
 {
   return (it->current != NULL && it->current->next != NULL);
 }
 
+/**
+ * @return whether it is possible to go backward in the list.
+ */
 int list_iterator_has_prev(list_iterator_t* it)
 {
   return (it->current != NULL && it->current->prev != NULL);
 }
 
+/**
+ * @brief Moves the iterator's current node pointer forward. If
+ * it is not possible to do so, the function will not modify the
+ * iterator's current node pointer.
+ * @return the current node if moving forward succeeded,
+ * NULL otherwise.
+ */
 node_t* list_iterator_next(list_iterator_t* it)
 {
   if (!list_iterator_has_next(it)) {
@@ -170,25 +265,19 @@ node_t* list_iterator_next(list_iterator_t* it)
   return (it->current = it->current->next);
 }
 
+/**
+ * @brief Moves the iterator's current node pointer backward. If
+ * it is not possible to do so, the function will not modify the
+ * iterator's current node pointer.
+ * @return the current node if moving backward succeeded,
+ * NULL otherwise.
+ */
 node_t* list_iterator_prev(list_iterator_t* it)
 {
   if (!list_iterator_has_prev(it)) {
     return (NULL);
   }
   return (it->current = it->current->prev);
-}
-
-node_t*	list_find_node(list_t* list, node_t* element)
-{
-  node_t* node = list->head;
-  
-  for (size_t i = 0; i < list->size; ++i) {
-    if (node == element) {
-      return (node);
-    }
-    node = node->next;
-  }
-  return (NULL);
 }
 
 /**
@@ -222,6 +311,11 @@ int	list_remove_node(list_t* list, node_t* node)
   return (0);
 }
 
+/**
+ * @brief Conditionally removes a node from the list based on the return
+ * value of the given `predicate`.
+ * @return the number of removed nodes.
+ */
 int	list_remove_node_if(list_t* list, list_predicate_t iterator, void* data)
 {
   node_t* node = list->head;
