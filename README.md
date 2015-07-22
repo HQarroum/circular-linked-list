@@ -2,7 +2,7 @@
 
 # Circular linked list
 
-This is an implementation of a tiny circular linked list in C.
+This is an implementation of a tiny circular doubly linked list in C.
 
 Current version: **0.1.0**
 
