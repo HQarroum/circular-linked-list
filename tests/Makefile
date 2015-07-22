@@ -1,8 +1,9 @@
-CC ?= gcc
+CC ?= g++
 
 APP ?= launch_tests
 
-SRC = unit_test_lifecycle.cpp \
+SRC = main.cpp \
+	unit_test_lifecycle.cpp \
 	unit_test_lookup.cpp \
 	unit_test_iteration.cpp \
 	unit_test_insertion.cpp \
