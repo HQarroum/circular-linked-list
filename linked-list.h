@@ -1,5 +1,5 @@
-#ifndef _DOUBLY_LINKED_LIST_
-# define _DOUBLY_LINKED_LIST_
+#ifndef _CIRCULAR_LINKED_LIST_
+# define _CIRCULAR_LINKED_LIST_
 
 #ifdef __cplusplus
 extern "C" {
