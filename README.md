@@ -8,7 +8,7 @@ Current version: **0.1.0**
 
 Lead Maintainer: [Halim Qarroum](mailto:hqm.post@gmail.com)
 
-## Build and tests
+## Building and testing
 
 The linked list implementation builds as a dynamix and static library by default. In order to trigger the build simply call the Makefile at the root of the project using `make`.
 
