@@ -61,6 +61,14 @@ extern "C" {
   list_t*	list_create();
   
   /**
+   * @brief Same as `list_create` except no dynamic
+   * allocation on the heap will be perform to create
+   * the list.
+   * @return a list_t value
+   */
+  list_t	list_create_static();
+
+  /**
    * @brief Destroys every element of the given `list` and
    * frees the memory allocated by the `list`. The given pointer
    * will not be usable after a call to this function.

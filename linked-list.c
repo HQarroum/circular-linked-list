@@ -11,6 +11,15 @@ list_t*	list_create()
   return (list);
 }
 
+list_t list_create_static()
+{
+  return ((list_t) {
+      .size = 0,
+      .head = NULL,
+      .tail = NULL
+  });
+}
+
 void	list_iterate_over_nodes(list_t* list, list_predicate_t iterator)
 {
   node_t* node = list->head;
