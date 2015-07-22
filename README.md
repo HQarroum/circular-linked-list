@@ -8,6 +8,12 @@ Current version: **0.1.0**
 
 Lead Maintainer: [Halim Qarroum](mailto:hqm.post@gmail.com)
 
+## Build and tests
+
+The linked list implementation builds as a dynamix and static library by default. In order to trigger the build simply call the Makefile at the root of the project using `make`.
+
+The list implementation is tested using the `Google Test` framework, the tests are located in the `tests/` directory and have their own makefile which produce an executable. To launch the tests simply call the produced `launch_tests` executable.
+
 ## Creating an instance of a list
 
 An instance of a list is of type `list_t`.
