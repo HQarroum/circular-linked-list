@@ -21,7 +21,7 @@ extern "C" {
   } node_t;
   
   /**
-   * @brief Definition of the doubly linked-list.
+   * @brief Definition of the circular doubly linked-list.
    * It holds informations about the current size
    * of the list, a pointer to the head node of the list,
    * and a pointer to the tail of the list.
@@ -34,9 +34,11 @@ extern "C" {
   } list_t;
   
   /**
-   * @brief The list iterator structure allowing
-   * to memorize a pointer to a `node_t` and going
-   * forward and backward in the list.
+   * @brief The list iterator structure allows
+   * to memorize a pointer to a `node_t`. It also holds
+   * a pointer to the list the node belongs to.
+   * The `data` pointer is reserved for future usage.
+   * @see list_make_iterator
    */
   typedef struct list_iterator_t
   {
@@ -67,7 +69,7 @@ extern "C" {
   
   /**
    * @brief Adds a new element to the `list`. This will cause a new `node_t`
-   * to be created, holding the given `element` and pushed at the head of the
+   * to be created, holding the given `element` and pushed at the front of the
    * given `list`.
    * @return a pointer to the newly created node.
    */
@@ -75,7 +77,7 @@ extern "C" {
   
   /**
    * @brief Adds a new element to the `list`. This will cause a new `node_t`
-   * to be created, holding the given `element` and pushed to the tail of the
+   * to be created, holding the given `element` and pushed to the back of the
    * given `list`.
    * @return a pointer to the newly created node.
    */
@@ -89,12 +91,12 @@ extern "C" {
   
   /**
    * @brief Searches the list for the given `node`.
-   * @return the found node if any; NULL otherwise.
+   * @return the found node if any, NULL otherwise.
    */
   node_t*	list_find_node(list_t* list, node_t* node);
   
   /**
-   * @brief Finds an elemnt using the return value of the givn `predicate`.
+   * @brief Finds an element using the return value of the given `predicate`.
    * @return the node matching the given predicate.
    */
   node_t*	list_find_node_if(list_t* list, list_predicate_t iterator, void* data);
@@ -116,31 +118,70 @@ extern "C" {
   int		list_remove_node_if(list_t* list, list_predicate_t predicate, void* data);
 
   /**
-   * @return the size of the given `kist` a.k.a the number of nodes currently
-   * held by the list).
+   * @return the size of the given `list`. That is, the number of nodes currently
+   * held by the list.
    */
   size_t	list_get_size(list_t* list);
   
   /**
    * @return a positive value if the given `list` is
-   * empty, a negative value otherwise.
+   * empty, zero otherwise.
    */
   int		list_is_empty(list_t* list);
   
+  /**
+   * @brief Removes the node associated with the given node pointer
+   * from the list.
+   * @return the pointer held by the removed node.
+   */
   void*		list_pop_node(list_t* list, node_t* node);
   
+  /**
+   * @brief Removes the node located at the head of the list.
+   * @return the pointer held by the removed node.
+   */
   void*		list_pop_back(list_t* list);
   
+  /**
+   * @brief Removes the node located at the tail of the list.
+   * @return the pointer held by the removed node.
+   */
   void*		list_pop_front(list_t* list);
   
+  /**
+   * @return a new instance of an iterator. The iterator's current node
+   * will be `node` if the given pointer is non-NULL, or the head of the
+   * given `list` otherwise.
+   */
   list_iterator_t list_make_iterator(list_t* list, node_t* node);
   
+  /**
+   * @return whether it is possible to go forward in the list.
+   */
   int		list_iterator_has_next(list_iterator_t* it);
-
+  
+  /**
+   * @return whether it is possible to go backward in the list.
+   */
   int		list_iterator_has_prev(list_iterator_t* it);
   
+  /**
+   * @brief Moves the iterator's current node pointer forward. If
+   * it is not possible to do so, the function will not modify the
+   * iterator's current node pointer.
+   * @return the current node if moving forward succeeded,
+   * NULL otherwise.
+   */
   node_t*	list_iterator_next(list_iterator_t* it);
-  
+
+  /**
+   * @brief Moves the iterator's current node pointer backward. If
+   * it is not possible to do so, the function will not modify the
+   * iterator's current node pointer.
+   * @return the current node if moving backward succeeded,
+   * NULL otherwise.
+   */
+  node_t*	list_iterator_prev(list_iterator_t* it);
 
 #ifdef __cplusplus
 }
