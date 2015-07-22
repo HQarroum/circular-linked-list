@@ -2,7 +2,7 @@
 
 # Circular linked list
 
-This is an implementation of a tiny circular doubly linked list in C.
+This is an implementation of a tiny circular doubly-linked list in C.
 
 Current version: **0.1.0**
 
@@ -20,10 +20,20 @@ An instance of a list is of type `list_t`.
 
 A list holds its current size which is represented by the sum of its nodes that are of type `node_t`. It also contains a pointer to the head of the list, and a pointer to the tail of the list.
 
-In order to create a new instance of a list, you must call `list_create`.
+### Creating a list dynamically
+
+In order to create a new instance of a list on the heap, you must call `list_create`.
 
 ```C
 list_t* list = list_create();
+```
+
+### Creating a list statically
+
+If you feel you do not need a pointer to be returned and you'd like the list to be created statically, you can call `list_create_static` :
+
+```C
+list_t list = list_create_static();
 ```
 
 ## Inserting elements
