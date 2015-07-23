@@ -42,3 +42,12 @@ TEST(ITERATION, USING_AN_ITERATOR) {
   }
   list_destroy(list);
 }
+
+TEST(ITERATION, USING_AN_ITERATOR_ON_AN_EMPTY_LIST) {
+  list_t list        = list_create_static();
+  list_iterator_t it = list_make_iterator(&list, NULL);
+    
+  while (list_iterator_has_next(&it)) {
+    ASSERT_TRUE(0);
+  }
+}

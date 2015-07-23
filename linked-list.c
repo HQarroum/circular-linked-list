@@ -229,7 +229,8 @@ void* list_pop_front(list_t* list)
 list_iterator_t list_make_iterator(list_t* list, node_t* node)
 {
   return ((list_iterator_t) {
-      .current = (node != NULL ? node : list->head->prev),
+      .current = (node != NULL ? node : list->head != NULL ?
+		  list->head->prev : NULL),
       .list = list
   });
 }
