@@ -58,7 +58,9 @@ The complexity of a node insertion is constant `O(1)`.
 
 ## Iterating over the nodes
 
-It is possible to iterate over each nodes associated with a given list as follow :
+### Using a callback
+
+It is possible to iterate over each nodes associated with a given list by having afunction called back on each node :
 
 ```C
 int iterator(size_t index, node_t* node, void* data)
@@ -72,7 +74,34 @@ int iterator(size_t index, node_t* node, void* data)
 // Iterates over each node in the list.
 list_iterate_over_nodes(list, iterator);
 ```
+
+This method will allow you to iterate from the first element (a.k.a the head of the list) to the last element (a.k.a the tail of the list).
+
 > Note : If a negative value is returned from the iterator, the iteration will be stopped.
+
+### Using an iterator
+
+Another way of iterating over the list is using the iterator APIs. The main difference with a callback is that you are in full control of the iteration, you can stop it, go forward or backward.
+
+To do so you must first create a `list_iterator_t` and use it to traverse the list :
+
+```C
+// This will create a new iterator. The second parameter is
+// optional, it specifies a node pointer you'd like the iterator
+// to point at. If NULL is passed, the iterator will point to the
+// head of the list.
+list_iterator_t it = list_make_iterator(list, NULL);
+
+for (size_t i = 0; i < list_get_size(list)
+         && list_iterator_has_next(&it); ++i) {
+  node_t* node = list_iterator_next(&it);
+  // Do something with `node`.
+}
+```
+
+The iterator created by `list_make_iterator` will iterate over each node continuously, meaning that unless the list is empty, the iteration will loop undefinitely, since the list is circular.
+
+You can however write your own iterator functions that will choose how to iterate over the list.
 
 The complexity of an iteration over each node in the list is linear `O(n)`.
 
