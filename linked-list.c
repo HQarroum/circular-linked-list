@@ -51,12 +51,12 @@ void	list_destroy(list_t* list)
  * @brief Allows to iterate over each node held by the list by pushing
  * each of them to the given `iterator`.
  */
-void	list_iterate_over_nodes(list_t* list, list_predicate_t iterator)
+void	list_iterate_over_nodes(list_t* list, list_predicate_t iterator, void* data)
 {
   node_t* node = list->head;
   
   for (size_t i = 0; i < list->size; ++i) {
-    if (iterator(i, node, NULL) < 0) {
+    if (iterator(i, node, data) < 0) {
       break;
     }
     node = node->next;

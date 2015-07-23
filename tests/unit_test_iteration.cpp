@@ -18,7 +18,7 @@ TEST(ITERATION, OVER_NODES) {
   list_push_back(list, &one);
   list_push_back(list, &two);
 
-  list_iterate_over_nodes(list, node_iterator);
+  list_iterate_over_nodes(list, node_iterator, NULL);
   list_destroy(list);
 }
 

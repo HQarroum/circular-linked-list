@@ -95,7 +95,7 @@ extern "C" {
    * @brief Allows to iterate over each node held by the list by pushing
    * each of them to the given `iterator`.
    */
-  void		list_iterate_over_nodes(list_t* list, list_predicate_t iterator);
+  void		list_iterate_over_nodes(list_t* list, list_predicate_t iterator, void* data);
   
   /**
    * @brief Searches the list for the given `node`.
