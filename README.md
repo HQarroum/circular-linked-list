@@ -81,14 +81,14 @@ This method will allow you to iterate from the first element (a.k.a the head of 
 
 ### Using an iterator
 
-Another way of iterating over the list is using the iterator APIs. The main difference with a callback is that you are in full control of the iteration, you can stop it, go forward or backward.
+Another way of iterating over the list is using the iterator set of APIs. The main difference with using a callback is that you are in full control of the iteration, you can stop it, go forward or backward.
 
 To do so you must first create a `list_iterator_t` and use it to traverse the list :
 
 ```C
 // This will create a new iterator. The second parameter is
 // optional, it specifies a node pointer you'd like the iterator
-// to point at. If NULL is passed, the iterator will point to the
+// to start at. If NULL is passed, the iterator will point to the
 // head of the list.
 list_iterator_t it = list_make_iterator(list, NULL);
 
@@ -99,7 +99,7 @@ for (size_t i = 0; i < list_get_size(list)
 }
 ```
 
-The iterator created by `list_make_iterator` will iterate over each node continuously, meaning that unless the list is empty, the iteration will loop undefinitely, since the list is circular.
+The iterator created by `list_make_iterator` will iterate over each node continuously, meaning that unless the list is empty, the iteration will loop undefinitely, since the list is circular. This is why we used a counter in the above example to stop the iteration at the end of the list.
 
 You can however write your own iterator functions that will choose how to iterate over the list.
 
