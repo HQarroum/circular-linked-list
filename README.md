@@ -35,6 +35,7 @@ If you feel you do not need a pointer to be returned and you'd like the list to 
 ```C
 list_t list = list_create_static();
 ```
+> Do not forget to clear the list when you finished using a static instance, typically using `list_clear` in order for all the nodes to be properly deleted.
 
 ## Inserting elements
 
@@ -199,10 +200,18 @@ Similarly, it is also possible to call `list_is_empty` if you'd like to know whe
 ```C
 int empty = list_is_empty(list)
 ```
+## Clearing a list
+
+To remove all the nodes contained in the list, you can call `list_clear` as follow :
+
+```C
+// Clearing a list by providing a pointer to the list.
+list_clear(list);
+```
 
 ## Destroying an instance of a list
 
-Similarly to creating a new instance of a list, to delete an instance of a list, you must call `list_destroy`. This will cause every node left in the list to be deleted, and the list itself to be destroyed. You will not be able to use the pointer to the list after a call to `list_destroy`.
+Similarly to creating a new instance of a list dynamically, to delete a dynamic instance of a list, you must call `list_destroy`. This will cause every node left in the list to be deleted, and the list itself to be destroyed. You will not be able to use the pointer to the list after a call to `list_destroy`.
 
 Example :
 
