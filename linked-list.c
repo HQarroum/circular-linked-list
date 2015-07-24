@@ -31,19 +31,29 @@ list_t list_create_static()
 }
 
 /**
+ * @brief Clears the list by deleting every node in it.
+ * The list will still be usable after this call.
+ */
+void	list_clear(list_t* list)
+{
+  node_t* node = list->head;
+  
+  while (!list_is_empty(list)) {
+    node_t* next = node->next;
+    
+    list_remove_node(list, node);
+    node = next;
+  }
+}
+
+/**
  * @brief Destroys every element of the given `list` and
  * frees the memory allocated by the `list`. The given pointer
  * will not be usable after a call to this function.
  */
 void	list_destroy(list_t* list)
 {
-  node_t* node = list->head;
-  
-  for (size_t i = 0; i < list->size; ++i) {
-    node_t* current = node;
-    node = node->next;
-    free(current);
-  }
+  list_clear(list);
   free(list);
 }
 

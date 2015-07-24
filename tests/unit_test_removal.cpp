@@ -34,3 +34,22 @@ TEST(REMOVAL, USING_A_PREDICATE) {
   EXPECT_TRUE(list_is_empty(list));
   list_destroy(list);
 }
+
+TEST(REMOVAL, OF_EVERY_NODE) {
+  // Using a dynamically created list.
+  list_t* list = list_create();
+  
+  list_push_back(list, (void*) "foo");
+  list_push_back(list, (void*) "bar");
+  list_clear(list);
+  EXPECT_TRUE(list_is_empty(list));
+  list_destroy(list);
+  
+  // Using a statically created list.
+  list_t static_list = list_create_static();
+  
+  list_push_back(&static_list, (void*) "foo");
+  list_push_back(&static_list, (void*) "bar");
+  list_clear(&static_list);
+  EXPECT_TRUE(list_is_empty(&static_list));
+}

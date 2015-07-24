@@ -67,7 +67,13 @@ extern "C" {
    * @return a list_t value
    */
   list_t	list_create_static();
-
+  
+  /**
+   * @brief Clears the list by deleting every node in it.
+   * The list will still be usable after this call.
+   */
+  void		list_clear(list_t* list);
+  
   /**
    * @brief Destroys every element of the given `list` and
    * frees the memory allocated by the `list`. The given pointer
