@@ -57,6 +57,19 @@ Both functions create an instance of a `node_t` which wraps the given element to
 
 The complexity of a node insertion is constant `O(1)`.
 
+## Popping elements
+
+It is possible to *pop* an element out of the list which is located in head or in tail. Similarly to inserting an element in the list where you pass a pointer to a value to `list_push_back` or `list_push_front`, popping an element will remove the inserted `node` and will return a pointer to the element you previously inserted. Here is an example of how to do that based on the previous example :
+
+```C
+// Will return the constant string `qux`.
+const char* qux = list_pop_back(list);
+// Will return the constant string `bar`.
+const char* bar = list_pop_front(list).
+```
+
+The complexity of a node pop is constant `O(1)`.
+
 ## Iterating over the nodes
 
 ### Using a callback
