@@ -1,7 +1,5 @@
 language: c
-
 compiler:
   - clang
   - gcc
-
-  script: make
+script: make
