@@ -1,6 +1,6 @@
-CC ?= gcc
+CC = gcc
 
-LIB_NAME ?= circular-linked-list
+LIB_NAME = circular-linked-list
 
 # Shared library extension
 LIB_SHARED_EXT = .so
@@ -16,9 +16,9 @@ LIB_STATIC_NAME = lib$(LIB_NAME)$(LIB_STATIC_EXT)
 
 SRC = linked-list.c
 
-CFLAGS ?= -std=c99 -W -Wall -Werror -fPIC
+CFLAGS = -std=c99 -W -Wall -Werror -fPIC
 
-LDFLAGS ?= -shared
+LDFLAGS = -shared
 
 OBJ = $(SRC:.c=.o)
 
