@@ -1,6 +1,6 @@
-CC ?= g++
+CXX = g++
 
-APP ?= launch_tests
+APP = launch_tests
 
 SRC = main.cpp \
 	unit_test_lifecycle.cpp \
@@ -10,17 +10,17 @@ SRC = main.cpp \
 	unit_test_pop.cpp \
 	unit_test_removal.cpp
 
-CFLAGS ?= -W -Wall -Werror -ansi -pedantic
+CFLAGS = -W -Wall -Werror -ansi -pedantic
 
-LDFLAGS ?= -lgtest -lpthread -L../ -lcircular-linked-list
+LDFLAGS = -lgtest -lpthread -L../ -lcircular-linked-list
 
 OBJ = $(SRC:.c=.o)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -o $@ -c $<
+	$(CXX) $(CFLAGS) -o $@ -c $<
 
 all: $(OBJ)
-	$(CC) -o $(APP) $^ $(CFLAGS) $(LDFLAGS)
+	$(CXX) -o $(APP) $^ $(CFLAGS) $(LDFLAGS)
 
 re: fclean all
 
