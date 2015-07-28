@@ -1,6 +1,6 @@
 ![Logo](http://dory.fr/images/jouets/train2.png)
 
-# Circular linked list
+# Circular linked list [![Build Status](https://travis-ci.org/HQarroum/circular-linked-list.svg?branch=master)](https://travis-ci.org/HQarroum/circular-linked-list)
 
 This is an implementation of a tiny circular doubly-linked list in C.
 
