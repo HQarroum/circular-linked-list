@@ -16,7 +16,7 @@ LIB_STATIC_NAME = lib$(LIB_NAME)$(LIB_STATIC_EXT)
 
 SRC = linked-list.c
 
-CFLAGS ?= -std=c99 -W -Wall -Werror
+CFLAGS ?= -std=c99 -W -Wall -Werror -fPIC
 
 LDFLAGS ?= -shared
 
