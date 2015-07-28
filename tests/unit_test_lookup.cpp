@@ -3,7 +3,7 @@
 
 static int node_predicate(size_t i, node_t* node, void* data)
 {
-  (int) i;
+  i = i;
   return (*(int*)(node->element) == *(int*)(data));
 }
 
