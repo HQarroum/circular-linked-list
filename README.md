@@ -74,7 +74,7 @@ The complexity of a node pop is constant `O(1)`.
 
 ### Using a callback
 
-It is possible to iterate over each nodes associated with a given list by having afunction called back on each node :
+It is possible to iterate over each nodes associated with a given list by having a function called back on each node :
 
 ```C
 int iterator(size_t index, node_t* node, void* data)
@@ -185,7 +185,7 @@ int predicate(size_t index, node_t* node, void* data)
 list_remove_node_if(list, predicate, NULL);
 ```
 
-It is also possible to pass a third parameter to `list_remove_node_id`, for it to be passed to your predicate function. This is espacially handy when removing values you do not known compile-time from the list :
+It is also possible to pass a third parameter to `list_remove_node_if`, for it to be passed to your predicate function. This is espacially handy when removing values you do not known compile-time from the list :
 
 ```C
 int predicate(size_t index, node_t* node, void* data)
