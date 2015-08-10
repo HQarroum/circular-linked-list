@@ -10,7 +10,7 @@ Lead Maintainer: [Halim Qarroum](mailto:hqm.post@gmail.com)
 
 ## Building and testing
 
-This implementation of the linked list is built as a dynamic and a static library by default. In order to trigger the build, simply call the Makefile at the root of the project using `make`.
+This implementation of the linked list builds as a dynamic and a static library by default. In order to trigger the build, simply call the Makefile at the root of the project using `make`.
 
 The list implementation is tested using the `Google Test` framework, the tests are located in the `tests/` directory and have their own makefile which produce an executable. To launch the tests simply call the produced `launch_tests` executable.
 
