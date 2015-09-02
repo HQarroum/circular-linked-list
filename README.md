@@ -4,7 +4,7 @@
 
 This is an implementation of a tiny circular doubly-linked list in C.
 
-Current version: **0.1.0**
+Current version: **1.0.0**
 
 Lead Maintainer: [Halim Qarroum](mailto:hqm.post@gmail.com)
 
