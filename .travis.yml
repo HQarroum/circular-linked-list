@@ -6,4 +6,4 @@ before_install:
   - sudo apt-get update
   - sudo apt-get install cmake libgtest-dev
   - "cd /usr/src/gtest && sudo cmake . && sudo cmake --build . && sudo mv libg* /usr/local/lib/ ; cd -"
-script: make re && cd ./tests && make re && export LD_LIBRARY_PATH=`pwd`/../ && ./launch_tests
+script: make re && cd ./tests && make re && export LD_LIBRARY_PATH=`pwd`/../ && valgrind --leak-check=full ./launch_tests
