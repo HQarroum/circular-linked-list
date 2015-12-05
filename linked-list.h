@@ -201,7 +201,7 @@ extern "C" {
    * @brief Creates a new initialized node instance.
    * @return a new instance of a `node_t`.
    */
-  node_t* node_new(void* element);
+  node_t*	node_new(void* element);
 
 #ifdef __cplusplus
 }
