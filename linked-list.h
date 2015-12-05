@@ -1,5 +1,5 @@
-#ifndef _CIRCULAR_LINKED_LIST_
-# define _CIRCULAR_LINKED_LIST_
+#ifndef CIRCULAR_LINKED_LIST
+#define CIRCULAR_LINKED_LIST
 
 #ifdef __cplusplus
 extern "C" {
@@ -207,4 +207,4 @@ extern "C" {
 }
 #endif
 
-#endif
+#endif // CIRCULAR_LINKED_LIST
