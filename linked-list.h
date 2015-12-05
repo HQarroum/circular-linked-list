@@ -52,7 +52,7 @@ extern "C" {
    * each node of the list.
    * @see list_iterate_over_nodes
    */
-  typedef int (*list_predicate_t)(size_t index, node_t* node, void* data);
+  typedef int	(*list_predicate_t)(size_t index, node_t* node, void* data);
   
   /**
    * @brief Creates a new instance of a `list_t`.
@@ -107,7 +107,7 @@ extern "C" {
    * @brief Searches the list for the given `node`.
    * @return the found node if any, NULL otherwise.
    */
-  node_t*	list_find_node(list_t* list, node_t* node);
+  node_t*	list_find_node(list_t* list, const node_t* node);
   
   /**
    * @brief Finds an element using the return value of the given `predicate`.
@@ -135,13 +135,13 @@ extern "C" {
    * @return the size of the given `list`. That is, the number of nodes currently
    * held by the list.
    */
-  size_t	list_get_size(list_t* list);
+  size_t	list_get_size(const list_t* list);
   
   /**
    * @return a positive value if the given `list` is
    * empty, zero otherwise.
    */
-  int		list_is_empty(list_t* list);
+  int		list_is_empty(const list_t* list);
   
   /**
    * @brief Removes the node associated with the given node pointer
@@ -172,12 +172,12 @@ extern "C" {
   /**
    * @return whether it is possible to go forward in the list.
    */
-  int		list_iterator_has_next(list_iterator_t* it);
+  int		list_iterator_has_next(const list_iterator_t* it);
   
   /**
    * @return whether it is possible to go backward in the list.
    */
-  int		list_iterator_has_prev(list_iterator_t* it);
+  int		list_iterator_has_prev(const list_iterator_t* it);
   
   /**
    * @brief Moves the iterator's current node pointer forward. If

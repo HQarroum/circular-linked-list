@@ -77,7 +77,7 @@ void	list_iterate_over_nodes(list_t* list, list_predicate_t iterator, void* data
  * @brief Searches the list for the given `node`.
  * @return the found node if any, NULL otherwise.
  */
-node_t*	list_find_node(list_t* list, node_t* element)
+node_t*	list_find_node(list_t* list, const node_t* element)
 {
   node_t* node = list->head;
   
@@ -111,7 +111,7 @@ node_t*	list_find_node_if(list_t* list, list_predicate_t iterator, void* data)
  * @return the size of the given `list`. That is, the number of nodes currently
  * held by the list.
  */
-size_t	list_get_size(list_t* list)
+size_t	list_get_size(const list_t* list)
 {
   return (list->size);
 }
@@ -120,7 +120,7 @@ size_t	list_get_size(list_t* list)
  * @return a positive value if the given `list` is
  * empty, zero otherwise.
  */
-int	list_is_empty(list_t* list)
+int	list_is_empty(const list_t* list)
 {
   return (list_get_size(list) == 0);
 }
@@ -248,7 +248,7 @@ list_iterator_t list_make_iterator(list_t* list, node_t* node)
 /**
  * @return whether it is possible to go forward in the list.
  */
-int list_iterator_has_next(list_iterator_t* it)
+int list_iterator_has_next(const list_iterator_t* it)
 {
   return (it->current != NULL && it->current->next != NULL);
 }
@@ -256,7 +256,7 @@ int list_iterator_has_next(list_iterator_t* it)
 /**
  * @return whether it is possible to go backward in the list.
  */
-int list_iterator_has_prev(list_iterator_t* it)
+int list_iterator_has_prev(const list_iterator_t* it)
 {
   return (it->current != NULL && it->current->prev != NULL);
 }
