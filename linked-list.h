@@ -207,4 +207,4 @@ extern "C" {
 }
 #endif
 
-#endif // CIRCULAR_LINKED_LIST
+#endif
