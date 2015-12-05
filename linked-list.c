@@ -61,7 +61,7 @@ void	list_destroy(list_t* list)
  * @brief Allows to iterate over each node held by the list by pushing
  * each of them to the given `iterator`.
  */
-void	list_iterate_over_nodes(list_t* list, list_predicate_t iterator, void* data)
+void	list_iterate_over_nodes(const list_t* list, list_predicate_t iterator, void* data)
 {
   node_t* node = list->head;
   
@@ -77,7 +77,7 @@ void	list_iterate_over_nodes(list_t* list, list_predicate_t iterator, void* data
  * @brief Searches the list for the given `node`.
  * @return the found node if any, NULL otherwise.
  */
-node_t*	list_find_node(list_t* list, const node_t* element)
+node_t*	list_find_node(const list_t* list, const node_t* element)
 {
   node_t* node = list->head;
   
@@ -94,7 +94,7 @@ node_t*	list_find_node(list_t* list, const node_t* element)
  * @brief Finds an element using the return value of the given `predicate`.
  * @return the node matching the given predicate.
  */
-node_t*	list_find_node_if(list_t* list, list_predicate_t iterator, void* data)
+node_t*	list_find_node_if(const list_t* list, list_predicate_t iterator, void* data)
 {
   node_t* node = list->head;
   
@@ -126,10 +126,11 @@ int	list_is_empty(const list_t* list)
 }
 
 /**
- * @brief Creates a new initialized node instance.
+ * @brief Creates a new node instance initialized
+ * with the given `element`.
  * @return a new instance of a `node_t`.
  */
-node_t* node_new(void* element)
+node_t* node_new(const void* element)
 {
   node_t* node;
   
@@ -146,7 +147,7 @@ node_t* node_new(void* element)
  * given `list`.
  * @return a pointer to the newly created node.
  */
-node_t*	list_push_front(list_t* list, void* element)
+node_t*	list_push_front(list_t* list, const void* element)
 {
   node_t* node = node_new(element);
   node_t* head = list->head;
@@ -174,7 +175,7 @@ node_t*	list_push_front(list_t* list, void* element)
  * given `list`.
  * @return a pointer to the newly created node.
  */
-node_t*	list_push_back(list_t* list, void* element)
+node_t*	list_push_back(list_t* list, const void* element)
 {
   node_t* node = node_new(element);
   node_t* tail = list->tail;
@@ -201,9 +202,9 @@ node_t*	list_push_back(list_t* list, void* element)
  * from the list.
  * @return the pointer held by the removed node.
  */
-void* list_pop_node(list_t* list, node_t* node)
+const void* list_pop_node(list_t* list, node_t* node)
 {
-  void* element;
+  const void* element;
   
   if (!node) {
     return (NULL);
@@ -217,7 +218,7 @@ void* list_pop_node(list_t* list, node_t* node)
  * @brief Removes the node located at the head of the list.
  * @return the pointer held by the removed node.
  */
-void* list_pop_back(list_t* list)
+const void* list_pop_back(list_t* list)
 {
   return (list_pop_node(list, list->tail));
 }
@@ -226,7 +227,7 @@ void* list_pop_back(list_t* list)
  * @brief Removes the node located at the tail of the list.
  * @return the pointer held by the removed node.
  */
-void* list_pop_front(list_t* list)
+const void* list_pop_front(list_t* list)
 {
   return (list_pop_node(list, list->head));
 }
