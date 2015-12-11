@@ -1,4 +1,6 @@
-![Logo](http://dory.fr/images/jouets/train2.png)
+<p align="center" style="margin-bottom: 50px">
+  <img src="http://dory.fr/images/jouets/train2.png" />
+</p>
 
 # Circular linked list
 [![Build Status](https://travis-ci.org/HQarroum/circular-linked-list.svg?branch=master)](https://travis-ci.org/HQarroum/circular-linked-list)
