@@ -83,13 +83,11 @@ It is possible to iterate over each nodes associated with a given list by having
 ```C
 int iterator(size_t index, node_t* node, void* data)
 {
-  printf("Node (%zu) element : %s\n",
-    index,
+  printf("Node (%zu) element : %s\n", index,
     (const char*) node->element);
   return (0);
 }
 
-// Iterates over each node in the list.
 list_iterate_over_nodes(list, iterator);
 ```
 
@@ -99,15 +97,11 @@ This method will allow you to iterate from the first element (a.k.a the head of 
 
 ### Using an iterator
 
-Another way of iterating over the list is using the iterator set of APIs. The main difference with using a callback is that you are in full control of the iteration, you can stop it, go forward or backward.
+Another way of iterating over the list is using the iterator APIs. The main difference with using a callback is that you are in full control of the iteration, you can stop it, go forward or backward.
 
 To do so you must first create a `list_iterator_t` and use it to traverse the list :
 
 ```C
-// This will create a new iterator. The second parameter is
-// optional, it specifies a node pointer you'd like the iterator
-// to start at. If NULL is passed, the iterator will point to the
-// head of the list.
 list_iterator_t it = list_make_iterator(list, NULL);
 
 for (size_t i = 0; i < list_get_size(list)
@@ -116,10 +110,12 @@ for (size_t i = 0; i < list_get_size(list)
   // Do something with `node`.
 }
 ```
+> The second parameter of `list_make_iterator` is optional, it specifies a node pointer you'd like the iterator
+> to start at. If NULL is passed, the iterator will point to the head of the list.
 
 The iterator created by `list_make_iterator` will iterate over each node continuously, meaning that unless the list is empty, the iteration will loop undefinitely, since the list is circular. This is why we used a counter in the above example to stop the iteration at the end of the list.
 
-You can however write your own iterator functions that will choose how to iterate over the list.
+Note that you are encouraged to write your own iterator functions that will implement the appropriate logic of how to iterate over an instance of a list given your application requirements.
 
 The complexity of an iteration over each node in the list is linear `O(n)`.
 
@@ -133,7 +129,7 @@ It is possible to search through the list for a particular node. You can use the
 node_t* node = list_push_front(list, "foo");
 
 if (list_find_node(list, node)) {
-  puts("Node found !");
+  // `node` was found
 }
 ```
 
@@ -151,9 +147,8 @@ int predicate(size_t index, node_t* node, void* data)
   return (!strcmp(node->element, data));
 }
 
-// Triggering a lookup by predicate.
 if (list_find_node_if(list, predicate, "foo")) {
-  puts("I found foo !");
+  // `foo` was found
 }
 ```
 
