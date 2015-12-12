@@ -263,6 +263,24 @@ int list_iterator_has_prev(const list_iterator_t* it)
 }
 
 /**
+ * @brief Removes the current node from the list.
+ * @return a positive value if the removal succeeded,
+ * zero otherwise.
+ */
+int list_iterator_remove(list_iterator_t* it)
+{
+  node_t* current = it->current;
+  
+  if (!current)
+    return (0);
+  if (current == current->next)
+    it->current = NULL;
+  else
+    it->current = current->next;
+  return (list_remove_node(it->list, current));
+}
+
+/**
  * @brief Moves the iterator's current node pointer forward. If
  * it is not possible to do so, the function will not modify the
  * iterator's current node pointer.

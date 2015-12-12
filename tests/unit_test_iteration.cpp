@@ -68,7 +68,8 @@ TEST(ITERATION, WHILE_REMOVING_NODES) {
 
   for (size_t s = list_get_size(&list); iteration < s
 	 && list_iterator_has_next(&it); ++iteration) {
-    EXPECT_EQ(list_remove_node(&list, list_iterator_next(&it)), 1);
+    list_iterator_next(&it);
+    EXPECT_EQ(list_iterator_remove(&it), 1);
   }
   EXPECT_EQ(iteration, 3);
   EXPECT_EQ(list_get_size(&list), 0);

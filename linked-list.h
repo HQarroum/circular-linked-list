@@ -198,6 +198,13 @@ extern "C" {
   node_t*	list_iterator_prev(list_iterator_t* it);
   
   /**
+   * @brief Removes the current node from the list.
+   * @return a positive value if the removal succeeded,
+   * zero otherwise.
+   */
+  int		list_iterator_remove(list_iterator_t* it);
+  
+  /**
    * @brief Creates a new node instance initialized
    * with the given `element`.
    * @return a new instance of a `node_t`.
