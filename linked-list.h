@@ -122,26 +122,26 @@ extern "C" {
    * been successfully removed from the `list`, a negative
    * value otherwise.
    */
-  int		list_remove_node(list_t* list, node_t* node);
+  int		  list_remove_node(list_t* list, node_t* node);
   
   /**
    * @brief Conditionally removes a node from the list based on the return
    * value of the given `predicate`.
    * @return the number of removed nodes.
    */
-  int		list_remove_node_if(list_t* list, list_predicate_t predicate, void* data);
+  int		  list_remove_node_if(list_t* list, list_predicate_t predicate, void* data);
 
   /**
    * @return the size of the given `list`. That is, the number of nodes currently
    * held by the list.
    */
-  size_t	list_get_size(const list_t* list);
+  size_t  list_get_size(const list_t* list);
   
   /**
    * @return a positive value if the given `list` is
    * empty, zero otherwise.
    */
-  int		list_is_empty(const list_t* list);
+  int     list_is_empty(const list_t* list);
   
   /**
    * @brief Removes the node associated with the given node pointer
