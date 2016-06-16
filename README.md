@@ -88,7 +88,7 @@ int iterator(size_t index, node_t* node, void* data)
   return (0);
 }
 
-list_iterate_over_nodes(list, iterator);
+list_iterate_over_nodes(list, iterator, NULL);
 ```
 
 This method will allow you to iterate from the first element (a.k.a the head of the list) to the last element (a.k.a the tail of the list).
