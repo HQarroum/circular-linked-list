@@ -1,7 +1,8 @@
+<br/>
 <p align="center"">
   <img src="http://dory.fr/images/jouets/train2.png" />
 </p>
-<br>
+<br/><br/>
 
 # Circular linked list
 [![Build Status](https://travis-ci.org/HQarroum/circular-linked-list.svg?branch=master)](https://travis-ci.org/HQarroum/circular-linked-list)
