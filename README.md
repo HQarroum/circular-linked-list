@@ -1,11 +1,12 @@
 <br/>
-<p align="center"">
+<p align="center">
   <img src="http://dory.fr/images/jouets/train2.png" />
 </p>
 <br/><br/>
 
 # Circular linked list
 [![Build Status](https://travis-ci.org/HQarroum/circular-linked-list.svg?branch=master)](https://travis-ci.org/HQarroum/circular-linked-list)
+![Production ready](https://img.shields.io/badge/Production-Ready-brightgreen.svg)
 
 This is an implementation of a tiny circular doubly-linked list in C.
 
