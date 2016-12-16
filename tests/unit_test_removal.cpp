@@ -3,9 +3,9 @@
 
 static int removal_predicate(size_t index, node_t* node, void* data)
 {
-  index = index;
-  node = node;
-  data = data;
+  (void) index;
+  (void) node;
+  (void) data;
   // Remove everything.
   return (1);
 }
