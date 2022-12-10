@@ -1,10 +1,10 @@
 <br/>
 <p align="center">
-  <img src="http://dory.fr/images/jouets/train2.png" />
+  <img width="300" src="./assets/icon.jpg" />
 </p>
 <br/><br/>
 
-# Circular linked list
+# circular-linked-list
 [![Build Status](https://travis-ci.org/HQarroum/circular-linked-list.svg?branch=master)](https://travis-ci.org/HQarroum/circular-linked-list)
 
 This is an implementation of a tiny circular doubly-linked list in C.
