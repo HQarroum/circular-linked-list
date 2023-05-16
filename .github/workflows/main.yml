@@ -1,0 +1,22 @@
+name: CI
+on:
+  - push
+  - pull_request
+jobs:
+  test:
+    name: Integration
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Packages
+        run: |
+            sudo apt-get update
+            sudo apt-get install cmake libgtest-dev valgrind
+      - name: Compile
+        run: |
+            make re && cd ./tests && make re
+      - name: Run Tests
+        run: |
+            export LD_LIBRARY_PATH=`pwd`/../ && valgrind --leak-check=full --error-exitcode=1 ./launch_tests

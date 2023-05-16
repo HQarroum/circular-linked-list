@@ -3,6 +3,7 @@ CXX = g++
 APP = launch_tests
 
 SRC = main.cpp \
+	unit_test_insertion.cpp \
 	unit_test_lifecycle.cpp \
 	unit_test_lookup.cpp \
 	unit_test_iteration.cpp \
@@ -10,7 +11,7 @@ SRC = main.cpp \
 	unit_test_pop.cpp \
 	unit_test_removal.cpp
 
-CFLAGS = -W -Wall -Werror -ansi -pedantic
+CFLAGS = -W -Wall -Werror -pedantic
 
 LDFLAGS = -lgtest -lpthread -L../ -lcircular-linked-list
 
