@@ -19,4 +19,4 @@ jobs:
             make re && cd ./tests && make re
       - name: Run Tests
         run: |
-            export LD_LIBRARY_PATH=`pwd`/../ && valgrind --leak-check=full --error-exitcode=1 ./launch_tests
+            export LD_LIBRARY_PATH=`pwd` && valgrind --leak-check=full --error-exitcode=1 ./tests/launch_tests

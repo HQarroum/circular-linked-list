@@ -1,8 +1,8 @@
-<br/><br/><br/>
+<br/><br/>
 <p align="center">
   <img src="./assets/icon.jpg" />
 </p>
-<br/><br/><br/>
+<br/><br/>
 
 # circular-linked-list
 [![Build Status](https://travis-ci.org/HQarroum/circular-linked-list.svg?branch=master)](https://travis-ci.org/HQarroum/circular-linked-list)
