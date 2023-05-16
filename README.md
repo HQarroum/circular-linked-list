@@ -5,7 +5,7 @@
 <br/>
 
 # circular-linked-list
-[![Build Status](https://travis-ci.org/HQarroum/circular-linked-list.svg?branch=master)](https://travis-ci.org/HQarroum/circular-linked-list)
+[![CI](https://github.com/HQarroum/circular-linked-list/actions/workflows/main.yml/badge.svg)](https://github.com/HQarroum/circular-linked-list/actions/workflows/main.yml)
 
 This is an implementation of a tiny circular doubly-linked list in C.
 
