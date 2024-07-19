@@ -39,7 +39,7 @@ If you feel you do not need a pointer to be returned and you'd like the list to 
 list_t list = list_create_static();
 ```
 
-> 💁 Do not forget to clear the list when you are finished using a static instance, typically using `list_clear` in order for all the nodes to be properly deleted.
+> Do not forget to clear the list when you are finished using a static instance, typically using `list_clear` in order for all the nodes to be properly deleted.
 
 ## Inserting elements
 
@@ -59,7 +59,7 @@ list_push_back(list, "qux");
 
 Both functions create an instance of a `node_t` which wraps the given element to insert in the list. Both functions return a pointer to the created node.
 
-> ℹ️ The complexity of a node insertion is constant `O(1)`.
+> The complexity of a node insertion is constant `O(1)`.
 
 ## Popping elements
 
@@ -72,7 +72,7 @@ const char* qux = list_pop_back(list);
 const char* bar = list_pop_front(list).
 ```
 
-> ℹ️ The complexity of a node pop is constant `O(1)`.
+> The complexity of a node pop is constant `O(1)`.
 
 ## Iterating over the nodes
 
@@ -90,9 +90,7 @@ int iterator(size_t index, node_t* node, void* data) {
 list_iterate_over_nodes(list, iterator, NULL);
 ```
 
-This method will allow you to iterate from the first element (the head of the list) to the last element (the tail of the list).
-
-> ℹ️ If a negative value is returned from the iterator, the iteration will stop.
+This method will allow you to iterate from the first element (the head of the list) to the last element (the tail of the list). If a negative value is returned from the iterator, the iteration will stop.
 
 ### Using an iterator
 
@@ -116,7 +114,7 @@ The iterator created by `list_make_iterator` will indefinitely iterate over the 
 
 Note that you are encouraged to write your own iterator functions that will implement the appropriate logic of how to iterate over an instance of a list given your application requirements.
 
-> ℹ️ The complexity of an iteration over each node in the list is linear `O(n)`.
+> The complexity of an iteration over each node in the list is linear `O(n)`.
 
 ## Finding an element
 
@@ -137,10 +135,6 @@ if (list_find_node(list, node)) {
 To customize the way to find an element in the list you can provide a predicate function to the `list_find_node_if` function :
 
 ```C
-/**
- * Returns a positive value when the element
- * contained by the given node is `data`.
- */
 int predicate(size_t index, node_t* node, void* data) {
   return (!strcmp(node->element, data));
 }
