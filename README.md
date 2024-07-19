@@ -68,6 +68,7 @@ You can *pop* an element located at the head or at the tail of the list. Popping
 ```C
 // Will return the constant string `qux`.
 const char* qux = list_pop_back(list);
+
 // Will return the constant string `bar`.
 const char* bar = list_pop_front(list).
 ```
@@ -144,7 +145,7 @@ if (list_find_node_if(list, predicate, "foo")) {
 }
 ```
 
-> ℹ️ The complexity of both basic and customized lookups is linear `O(n)`.
+> The complexity of both basic and customized lookups is linear `O(n)`.
 
 ## Removing a node
 
@@ -162,7 +163,7 @@ list_remove_node(list, node);
 
 ### Conditional removal
 
-It is possible to remove a node using a more functional way, by using a predicate passed to `list_remove_node_if`, here is an example of how you can use it :
+It is possible to remove a node using a more functional way, by using a predicate passed to `list_remove_node_if`.
 
 ```C
 int predicate(size_t index, node_t* node, void* data) {
@@ -170,7 +171,7 @@ int predicate(size_t index, node_t* node, void* data) {
           || !strcmp(node->element, "foo"));
 }
 
-// This will remove from the list each node holding
+// Remove from the list each node holding
 // the constant strings 'foo' or 'bar'.
 list_remove_node_if(list, predicate, NULL);
 ```
@@ -182,12 +183,12 @@ int predicate(size_t index, node_t* node, void* data) {
   return (!strcmp(node->element, data));
 }
 
-// This will remove from the list each node holding
+// Remove from the list each node holding
 // the constant string 'foo'.
 list_remove_node_if(list, predicate, "foo");
 ```
 
-> ℹ️ The complexity of a node removal is linear `O(n)`.
+> The complexity of a node removal is linear `O(n)`.
 
 ## Retrieving the size of a list instance
 
