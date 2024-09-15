@@ -206,7 +206,7 @@ int empty = list_is_empty(list)
 
 ## Clearing a list
 
-To remove all the nodes contained in the list, you can call `list_clear` as follow :
+To remove all the nodes contained in the list, you can call `list_clear`.
 
 ```C
 list_clear(list);

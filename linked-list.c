@@ -213,7 +213,7 @@ node_t*	list_push_back(list_t* list, void* element) {
 
 /**
  * @brief Removes the node associated with the given node pointer
- * from the list.
+ * from the list. The node must be a non-null pointer.
  * @return the pointer held by the removed node, or
   * NULL if the removal failed.
  */
@@ -359,8 +359,7 @@ int	list_remove_node_if(list_t* list, list_predicate_t iterator, void* data) {
   for (size_t i = 0; i < list->size; ++i) {
     node_t* next = node->next;
     
-    if (iterator(i, node, data)) {
-      list_remove_node(list, node);
+    if (iterator(i, node, data) && list_remove_node(list, node)) {
       removed++;
       i -= 1;
     }
